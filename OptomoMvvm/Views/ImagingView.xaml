@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
         xmlns:local="clr-namespace:OptomoMvvm.Views"
+        xmlns:vm="clr-namespace:OptomoMvvm.ViewModel"
         mc:Ignorable="d"
-        Title="ImagingView" Height="450" Width="800">
+        Title="ImagingView" Height="{Binding Height, Mode=TwoWay}"  Width="{Binding Width, Mode=TwoWay}">
     <Grid>
-        <wfi:WindowsFormsHost x:Name="ImagingPanel" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <WindowsFormsHost   x:Name="ImagingPanel" 
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch">
+        </WindowsFormsHost>
     </Grid>
 </Window>

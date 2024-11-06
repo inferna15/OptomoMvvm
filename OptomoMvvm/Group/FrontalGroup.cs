@@ -2,7 +2,7 @@
 
 namespace OptomoMvvm.Group
 {
-    internal class FrontalGroup
+    public class FrontalGroup
     {
         public IImageReslice Slice { get; }
         public IImageMapper Mapper { get; }

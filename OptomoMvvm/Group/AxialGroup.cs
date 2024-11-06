@@ -2,7 +2,7 @@
 
 namespace OptomoMvvm.Group
 {
-    internal class AxialGroup
+    public class AxialGroup
     {
         public IImageReslice Slice { get; }
         public IImageMapper Mapper { get; }

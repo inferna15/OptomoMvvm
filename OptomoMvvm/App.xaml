@@ -1,8 +1,7 @@
 ﻿<Application x:Class="OptomoMvvm.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:OptomoMvvm"
-             StartupUri="Views/ImagingWindow.xaml">
+             xmlns:local="clr-namespace:OptomoMvvm">
     <Application.Resources>
          
     </Application.Resources>

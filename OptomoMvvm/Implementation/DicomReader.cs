@@ -7,9 +7,10 @@ namespace OptomoMvvm.Implementation
     {
         private vtkDICOMImageReader reader;
 
+        public DicomReader() => reader = new vtkDICOMImageReader();
+
         public void SetDirectoryName(string Path)
         {
-            reader = new vtkDICOMImageReader();
             reader.SetDirectoryName(Path);
             reader.Update();
         }

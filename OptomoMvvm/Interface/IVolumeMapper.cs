@@ -13,7 +13,7 @@ namespace OptomoMvvm.Interface
         InvalidRenderMode
     }
 
-    internal interface IVolumeMapper
+    public interface IVolumeMapper
     {
         void Create(vtkAlgorithmOutput Output);
         vtkSmartVolumeMapper GetMapper();

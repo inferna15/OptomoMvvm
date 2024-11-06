@@ -1,5 +1,7 @@
 ﻿using Kitware.VTK;
 using OptomoMvvm.Interface;
+using System.Windows;
+using System.Windows.Media.Media3D;
 
 namespace OptomoMvvm.Implementation
 {
@@ -7,18 +9,30 @@ namespace OptomoMvvm.Implementation
     {
         private vtkImageReslice reslice;
 
-        public void Create(vtkAlgorithmOutput Output, double[] Center, double[] Cosinus)
+        public ImageReslice() => reslice = new vtkImageReslice();
+
+        public void Create(vtkAlgorithmOutput Output, double[] Cosinus)
         {
-            reslice = new vtkImageReslice();
             reslice.SetInputConnection(Output);
+            reslice.SetOutputDimensionality(2);
             reslice.SetResliceAxesDirectionCosines(Cosinus[0], Cosinus[1], Cosinus[2], Cosinus[3], Cosinus[4], Cosinus[5], Cosinus[6], Cosinus[7], Cosinus[8]);
-            reslice.SetResliceAxesOrigin(Center[0], Center[1], Center[2]);
         }
 
         public vtkAlgorithmOutput GetOutput() => reslice.GetOutputPort();
 
-        public void SetOutputExtent(int[] Values) => reslice.SetOutputExtent(Values[0], Values[1], Values[2], Values[3], Values[4], Values[5]);
+        public void SetAxisOrigin(double X, double Y, double Z) => reslice.SetResliceAxesOrigin(X, Y, Z);
 
-        public void SetOutputSpacing(double[] Values) => reslice.SetOutputSpacing(Values[0], Values[1], Values[2]);
+        public void SetOutputExtent(int Motion1, int Motion2, double Zoom, double Ratio, double height, double width)
+        {
+            reslice.SetOutputExtent((int)(Motion1 * Ratio * Zoom) - (int)((Zoom - 1) * (width / 2)),
+                (int)(width + Motion1 * Ratio * Zoom) + (int)((Zoom - 1) * (width / 2)),
+                (int)(Motion2 * Ratio * Zoom) - (int)((Zoom - 1) * (height / 2)),
+                (int)(height + Motion2 * Ratio * Zoom) + (int)((Zoom - 1) * (height / 2)), 0, 0);
+        }
+
+        public void SetOutputSpacing(double[] Spacing, double Ratio, double Zoom)
+        {
+            reslice.SetOutputSpacing(Spacing[0] / Ratio / Zoom, Spacing[1] / Ratio / Zoom, Spacing[2] / Ratio / Zoom);
+        }
     }
 }

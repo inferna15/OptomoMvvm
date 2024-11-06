@@ -1,25 +1,18 @@
-﻿using Kitware.VTK;
+﻿using OptomoMvvm.ViewModel;
 using System.Windows;
+using System.Windows.Media;
 
 namespace OptomoMvvm.Views
 {
     public partial class ImagingView : Window
     {
-        public ImagingView()
+        private readonly VtkViewModel viewModel;
+        public ImagingView(VtkViewModel model)
         {
+            viewModel = model;
+            DataContext = viewModel;
             InitializeComponent();
-            this.Loaded += Load;
-        }
-
-        // Düzeltilecek
-        private void Load(object sender, RoutedEventArgs e)
-        {
-            var viewModel = DataContext as MainViewModel;
-            if (viewModel != null)
-            {
-                // RenderWindowControl'ün RenderWindow'unu ayarla
-                vtkWindow.Child = viewModel.VTKViewModel.RenderControl;
-            }
+            viewModel.DpiScale = VisualTreeHelper.GetDpi(this).PixelsPerDip;
         }
     }
 }

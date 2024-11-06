@@ -3,7 +3,7 @@ using OptomoMvvm.Interface;
 
 namespace OptomoMvvm.Implementation
 {
-    internal class VolumeProperty : IVolumeProperty
+    public class VolumeProperty : IVolumeProperty
     {
         private vtkVolumeProperty property;
 

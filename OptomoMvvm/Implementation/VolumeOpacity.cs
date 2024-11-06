@@ -3,7 +3,7 @@ using OptomoMvvm.Interface;
 
 namespace OptomoMvvm.Implementation
 {
-    internal class VolumeOpacity : IVolumeOpacity
+    public class VolumeOpacity : IVolumeOpacity
     {
         private vtkPiecewiseFunction opacity;
 

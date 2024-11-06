@@ -7,11 +7,9 @@ namespace OptomoMvvm.Implementation
     {
         private vtkImageMapper mapper;
 
-        public void Create(vtkAlgorithmOutput Output)
-        {
-            mapper = new vtkImageMapper();
-            mapper.SetInputConnection(Output);
-        }
+        public ImageMapper() => mapper = new vtkImageMapper();
+
+        public void Create(vtkAlgorithmOutput Output) => mapper.SetInputConnection(Output);
 
         public vtkImageMapper GetMapper() => mapper;
 

@@ -2,7 +2,7 @@
 
 namespace OptomoMvvm.Interface
 {
-    internal interface IVolumeOpacity
+    public interface IVolumeOpacity
     {
         void Create();
         void AddOpacity(double Value, double Opacity);

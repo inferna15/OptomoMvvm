@@ -2,7 +2,7 @@
 
 namespace OptomoMvvm.Interface
 {
-    internal interface IVolumeColor
+    public interface IVolumeColor
     {
         void Create();
         void AddColor(double Value, double[] RGB);

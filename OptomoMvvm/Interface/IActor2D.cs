@@ -2,13 +2,13 @@
 
 namespace OptomoMvvm.Interface
 {
-    internal interface IActor2D
+    public interface IActor2D
     {
         /// <summary>
         /// Mapper ile bir vtkActor2D oluşturur.
         /// </summary>
         /// <param name="Mapper"></param>
-        void Create(vtkImageMapper Mapper);
+        void SetMapper(vtkImageMapper Mapper);
 
         /// <summary>
         /// Actor'ü döndürür.

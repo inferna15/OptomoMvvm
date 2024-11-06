@@ -3,7 +3,7 @@ using OptomoMvvm.Interface;
 
 namespace OptomoMvvm.Implementation
 {
-    internal class VolumeColor : IVolumeColor
+    public class VolumeColor : IVolumeColor
     {
         private vtkColorTransferFunction color;
 

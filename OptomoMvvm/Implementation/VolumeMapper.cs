@@ -3,7 +3,7 @@ using OptomoMvvm.Interface;
 
 namespace OptomoMvvm.Implementation
 {
-    internal class VolumeMapper : IVolumeMapper
+    public class VolumeMapper : IVolumeMapper
     {
         private vtkSmartVolumeMapper mapper;
 

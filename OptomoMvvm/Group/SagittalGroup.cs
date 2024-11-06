@@ -2,7 +2,7 @@
 
 namespace OptomoMvvm.Group
 {
-    internal class SagittalGroup
+    public class SagittalGroup
     {
         public IImageReslice Slice { get; }
         public IImageMapper Mapper { get; }

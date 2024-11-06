@@ -9,7 +9,7 @@ namespace OptomoMvvm.Interface
         VTK_CUBIC_INTERPOLATION
     }
 
-    internal interface IVolumeProperty
+    public interface IVolumeProperty
     {
         void Create();
         vtkVolumeProperty GetProperty();

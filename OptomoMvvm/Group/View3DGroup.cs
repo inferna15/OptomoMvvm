@@ -2,7 +2,7 @@
 
 namespace OptomoMvvm.Group
 {
-    internal class View3DGroup
+    public class View3DGroup
     {
         public IVolumeMapper Mapper { get; }
         public IVolumeColor Color { get; }

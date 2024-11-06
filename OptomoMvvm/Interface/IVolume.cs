@@ -2,7 +2,7 @@
 
 namespace OptomoMvvm.Interface
 {
-    internal interface IVolume
+    public interface IVolume
     {
         void Create();
         void SetMapper(vtkSmartVolumeMapper Mapper);

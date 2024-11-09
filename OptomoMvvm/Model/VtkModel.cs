@@ -397,5 +397,44 @@ namespace OptomoMvvm.Model
             SetPositionInSagittal();
             SetPositionInFrontal();
         }
+
+        public void Maximize()
+        {
+            switch (SelectedPanel)
+            {
+                case Panel.Axial:
+                    Axial.Renderer.SetPosition(new double[] { 0, 0, 1, 1 });
+                    Sagittal.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    Frontal.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    View3D.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    break;
+                case Panel.Sagittal:
+                    Sagittal.Renderer.SetPosition(new double[] { 0, 0, 1, 1 });
+                    Axial.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    Frontal.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    View3D.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    break;
+                case Panel.Frontal:
+                    Frontal.Renderer.SetPosition(new double[] { 0, 0, 1, 1 });
+                    Axial.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    Sagittal.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    View3D.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    break;
+                case Panel.View3D:
+                    View3D.Renderer.SetPosition(new double[] { 0, 0, 1, 1 });
+                    Axial.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    Sagittal.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    Frontal.Renderer.SetPosition(new double[] { 0, 0, 0, 0 });
+                    break;
+            }
+        }
+
+        public void Minimize() 
+        {
+            Axial.Renderer.SetPosition(new double[] { 0.0, 0.5, 0.5, 1.0 });
+            Sagittal.Renderer.SetPosition(new double[] { 0.5, 0.5, 1.0, 1.0 });
+            Frontal.Renderer.SetPosition(new double[] { 0.0, 0.0, 0.5, 0.5 });
+            View3D.Renderer.SetPosition(new double[] { 0.5, 0.0, 1.0, 0.5 });
+        }
     }
 }

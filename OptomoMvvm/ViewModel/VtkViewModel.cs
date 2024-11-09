@@ -16,6 +16,7 @@ namespace OptomoMvvm.ViewModel
         public ICommand PanelCommand { get; }
         public ICommand MotionCommand { get; }
         public ICommand ResetCommand { get; }
+        public ICommand MaxCommand { get; }
 
         public VtkViewModel(VtkModel model)
         {
@@ -26,6 +27,7 @@ namespace OptomoMvvm.ViewModel
             PanelCommand = new RelayCommand(ChangePanel);
             MotionCommand = new RelayCommand(ChangeMotion);
             ResetCommand = new RelayCommand(_ => Reset());
+            MaxCommand = new RelayCommand(_ => Maximize());
         }
 
         // ViewModel'e bağlı olanlar
@@ -157,7 +159,6 @@ namespace OptomoMvvm.ViewModel
         // Fonksiyonlar
         private void StartFunc()
         {
-            MessageBox.Show(DpiScale.ToString());
             Model.InsertRenderersToController(RenderControl.RenderWindow);
         }
 
@@ -172,10 +173,10 @@ namespace OptomoMvvm.ViewModel
             {
                 Model.WidthDPI = Width * DpiScale / 2;
                 Model.HeightDPI = Height * DpiScale / 2;
-                Model.SetPositionInAxial();
-                Model.SetPositionInSagittal();
-                Model.SetPositionInFrontal();
             }
+            Model.SetPositionInAxial();
+            Model.SetPositionInSagittal();
+            Model.SetPositionInFrontal();
             if (RenderControl.RenderWindow != null)
             {
                 RenderControl.RenderWindow.Render();
@@ -187,6 +188,15 @@ namespace OptomoMvvm.ViewModel
             if (param is Panel panel)
             {
                 SelectedPanel = panel;
+                if (IsMax)
+                {
+                    Model.Maximize();
+                }
+                else
+                {
+                    Model.Minimize();
+                }
+                SetPositions();
             }
         }
 
@@ -199,39 +209,57 @@ namespace OptomoMvvm.ViewModel
                     case Panel.Axial:
                         if (value == "1")
                         {
-                            AxialLayer++;
-                            Motion[1]--;
+                            if (AxialLayer < Model.Extent[3])
+                            {
+                                AxialLayer++;
+                                Motion[1]--;
+                            }
                         }
                         else if (value == "-1")
                         {
-                            AxialLayer--;
-                            Motion[1]++;
+                            if (AxialLayer > 0)
+                            {
+                                AxialLayer--;
+                                Motion[1]++;
+                            }
                         }
                         Model.ChangeMotionInAxial();
                         break;
                     case Panel.Sagittal:
                         if (value == "1")
                         {
-                            SagittalLayer++;
-                            Motion[0]--;
+                            if (SagittalLayer  < Model.Extent[1])
+                            {
+                                SagittalLayer++;
+                                Motion[0]--;
+                            }
                         }
                         else if (value == "-1")
                         {
-                            SagittalLayer--;
-                            Motion[0]++;
+                            if (SagittalLayer > 0)
+                            {
+                                SagittalLayer--;
+                                Motion[0]++;
+                            }
                         }
                         Model.ChangeMotionInSagittal();
                         break;
                     case Panel.Frontal:
                         if (value == "1")
                         {
-                            FrontalLayer++;
-                            Motion[2]--;
+                            if (FrontalLayer < Model.Extent[5])
+                            {
+                                FrontalLayer++;
+                                Motion[2]--;
+                            }
                         }
                         else if (value == "-1")
                         {
-                            FrontalLayer--;
-                            Motion[2]++;
+                            if (FrontalLayer > 0)
+                            {
+                                FrontalLayer--;
+                                Motion[2]++;
+                            }
                         }
                         Model.ChangeMotionInFrontal();
                         break;
@@ -252,81 +280,117 @@ namespace OptomoMvvm.ViewModel
                     case "1":
                         if (SelectedPanel == Panel.Axial)
                         {
-                            FrontalLayer++;
-                            Motion[2]--;
-                            Model.ChangeMotionInFrontal();
+                            if (FrontalLayer < Model.Extent[5])
+                            {
+                                FrontalLayer++;
+                                Motion[2]--;
+                                Model.ChangeMotionInFrontal();
+                            }
                         }
                         else if (SelectedPanel == Panel.Sagittal)
                         {
-                            FrontalLayer++;
-                            Motion[2]--;
-                            Model.ChangeMotionInFrontal();
+                            if (FrontalLayer < Model.Extent[5])
+                            {
+                                FrontalLayer++;
+                                Motion[2]--;
+                                Model.ChangeMotionInFrontal();
+                            }
                         }
                         else if (SelectedPanel == Panel.Frontal)
                         {
-                            AxialLayer++;
-                            Motion[1]--;
-                            Model.ChangeMotionInAxial();
+                            if (AxialLayer < Model.Extent[3])
+                            {
+                                AxialLayer++;
+                                Motion[1]--;
+                                Model.ChangeMotionInAxial();
+                            }
                         }
                         break;
                     case "2":
                         if (SelectedPanel == Panel.Axial)
                         {
-                            FrontalLayer--;
-                            Motion[2]++;
-                            Model.ChangeMotionInFrontal();
+                            if (FrontalLayer > 0)
+                            {
+                                FrontalLayer--;
+                                Motion[2]++;
+                                Model.ChangeMotionInFrontal();
+                            }
                         }
                         else if (SelectedPanel == Panel.Sagittal)
                         {
-                            FrontalLayer--;
-                            Motion[2]++;
-                            Model.ChangeMotionInFrontal();
+                            if (FrontalLayer > 0)
+                            {
+                                FrontalLayer--;
+                                Motion[2]++;
+                                Model.ChangeMotionInFrontal();
+                            }
                         }
                         else if (SelectedPanel == Panel.Frontal)
                         {
-                            AxialLayer--;
-                            Motion[1]++;
-                            Model.ChangeMotionInAxial();
+                            if (AxialLayer > 0)
+                            {
+                                AxialLayer--;
+                                Motion[1]++;
+                                Model.ChangeMotionInAxial();
+                            }
                         }
                         break;
                     case "3":
                         if (SelectedPanel == Panel.Axial)
                         {
-                            SagittalLayer--;
-                            Motion[0]++;
-                            Model.ChangeMotionInSagittal();
+                            if (SagittalLayer > 0)
+                            {
+                                SagittalLayer--;
+                                Motion[0]++;
+                                Model.ChangeMotionInSagittal();
+                            }
                         }
                         else if (SelectedPanel == Panel.Sagittal)
                         {
-                            AxialLayer--;
-                            Motion[1]++;
-                            Model.ChangeMotionInAxial();
+                            if (AxialLayer > 0)
+                            {
+                                AxialLayer--;
+                                Motion[1]++;
+                                Model.ChangeMotionInAxial();
+                            }
                         }
                         else if (SelectedPanel == Panel.Frontal)
                         {
-                            SagittalLayer--;
-                            Motion[0]++;
-                            Model.ChangeMotionInSagittal();
+                            if (SagittalLayer > 0)
+                            {
+                                SagittalLayer--;
+                                Motion[0]++;
+                                Model.ChangeMotionInSagittal();
+                            }
                         }
                         break;
                     case "4":
                         if (SelectedPanel == Panel.Axial)
                         {
-                            SagittalLayer++;
-                            Motion[0]--;
-                            Model.ChangeMotionInSagittal();
+                            if (SagittalLayer < Model.Extent[1])
+                            {
+                                SagittalLayer++;
+                                Motion[0]--;
+                                Model.ChangeMotionInSagittal();
+                            }
                         }
                         else if (SelectedPanel == Panel.Sagittal)
                         {
-                            AxialLayer++;
-                            Motion[1]--;
-                            Model.ChangeMotionInAxial();
+                            if (AxialLayer < Model.Extent[3])
+                            {
+                                AxialLayer++;
+                                Motion[1]--;
+                                Model.ChangeMotionInAxial();
+                            }
                         }
                         else if (SelectedPanel == Panel.Frontal)
                         {
-                            SagittalLayer++;
-                            Motion[0]--;
-                            Model.ChangeMotionInSagittal();
+                            if (SagittalLayer < Model.Extent[1])
+                            {
+                                SagittalLayer++;
+                                Motion[0]--;
+                                Model.ChangeMotionInSagittal();
+                            }
                         }
                         break;
                 }
@@ -338,6 +402,14 @@ namespace OptomoMvvm.ViewModel
         {
             Model.Reset();
             RenderControl.RenderWindow.Render();
+        }
+
+        private void Maximize()
+        {
+            IsMax = !IsMax;
+            ChangePanel(SelectedPanel);
+            ChangePanel(SelectedPanel);
+            // Burada iki defa çağımamın nedeni bir await sorunu ile ilgili ama ben üşendiğim için böyle çözdüm. Sakın dokunma!
         }
     }
 }

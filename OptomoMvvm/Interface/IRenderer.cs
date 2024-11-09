@@ -6,6 +6,7 @@ namespace OptomoMvvm.Interface
     {
         void Create(vtkActor2D Actor, double[] Position, double[] Background);
         void Create(vtkVolume Actor, double[] Position, double[] Background);
+        void SetPosition(double[] Position);
         vtkRenderer GetRenderer();
     }
 }

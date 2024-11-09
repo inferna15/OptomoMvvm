@@ -24,6 +24,8 @@ namespace OptomoMvvm.Implementation
             renderer.SetViewport(Position[0], Position[1], Position[2], Position[3]);
         }
 
+        public void SetPosition(double[] Position) => renderer.SetViewport(Position[0], Position[1], Position[2], Position[3]);
+
         public vtkRenderer GetRenderer() => renderer;
     }
 }

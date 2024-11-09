@@ -5,16 +5,15 @@ using OptomoMvvm.Interface;
 using OptomoMvvm.Model;
 using OptomoMvvm.ViewModel;
 using OptomoMvvm.Views;
-using System.Configuration;
-using System.Data;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace OptomoMvvm
 {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         public static ServiceProvider ServiceProvider { get; private set; }
 
@@ -101,6 +100,18 @@ namespace OptomoMvvm
                     viewModel.StartCommand.Execute(this);
                 }
             };
+
+            if (Screen.AllScreens.Length > 1)
+            {
+                var secondScreen = Screen.AllScreens[1];
+                imagingView.WindowStartupLocation = WindowStartupLocation.Manual;
+                imagingView.Left = secondScreen.WorkingArea.Left;
+                imagingView.Top = secondScreen.WorkingArea.Top;
+                imagingView.Width = secondScreen.WorkingArea.Width;
+                imagingView.Height = secondScreen.WorkingArea.Height;
+                imagingView.WindowState = WindowState.Maximized;
+            }
+
             imagingView.Show();
             var controlView = ServiceProvider.GetRequiredService<ControlView>();
             controlView.Show();

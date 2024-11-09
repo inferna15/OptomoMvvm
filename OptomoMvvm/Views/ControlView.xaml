@@ -62,6 +62,8 @@
                           Interval="20" />
             <Button Content="Reset"
                     Command="{Binding ResetCommand}"/>
+            <Button Content="Max or Min"
+                    Command="{Binding MaxCommand}" />
         </StackPanel>
     </Grid>
 </Window>

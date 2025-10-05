@@ -5,7 +5,7 @@
 
 ## Proje Hakkında
 
-**Medical Viewer**, WPF (Windows Presentation Foundation) kullanılarak geliştirilmiş, medikal DICOM görüntülerini görselleştirmeye yönelik bir masaüstü uygulamasıdır. Bu araç, DICOM serilerini 3 farklı eksende (Aksiyel, Sagital, Koronal) kesitsel olarak ve aynı zamanda 3D hacimsel (Volume Rendering) olarak interaktif bir şekilde görüntülemeyi sağlar.
+**Medical Viewer**, WPF (Windows Presentation Foundation) kullanılarak geliştirilmiş, medikal DICOM görüntülerini görselleştirmeye yönelik bir masaüstü uygulamasıdır. Bu araç, DICOM serilerini 3 farklı eksende (Transversal, Sagittal, Coronal) kesitsel olarak ve aynı zamanda 3D hacimsel (Volume Rendering) olarak interaktif bir şekilde görüntülemeyi sağlar.
 
 Proje, temiz ve sürdürülebilir bir kod yapısı için **MVVM (Model-View-ViewModel)** mimari deseni üzerine inşa edilmiştir. 3D görselleştirme yetenekleri için açık kaynaklı ve güçlü bir kütüphane olan **VTK (The Visualization Toolkit)** ve onun .NET sarmalayıcısı olan **Activiz.NET** kullanılmıştır.
 
@@ -21,7 +21,7 @@ Uygulama, kullanıcı deneyimini iyileştirmek için iki ayrı pencereden oluşu
     -   3D Hacimsel Görüntüleme (Volume Rendering).
 -   **İnteraktif Kontroller:**
     -   **Zoom:** Görüntüleri yakınlaştırma ve uzaklaştırma.
-    -   **Katmanlar Arası Geçiş:** Fare tekerleği veya kaydırma çubukları ile kesitler arasında gezinme.
+    -   **Katmanlar Arası Geçiş:** Kontrol panelindeki tuşlar ile kesitler arasında gezinme.
     -   **Eksen Çizgileri (Crosshairs):** Farklı pencerelerdeki anatomik konumları senkronize olarak gösteren kılvuz çizgileri.
 -   **Pencereleme (Windowing):** Görüntü kontrastını ve parlaklığını ayarlamak için Pencere Genişliği (WW - Window Width) ve Pencere Seviyesi (WL - Window Level) kontrolleri.
 

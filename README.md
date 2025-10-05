@@ -1,6 +1,6 @@
 # Medical Viewer
 
-<img width="1916" height="1078" alt="398670765-c5d85c01-1b36-4595-91ab-2c48c97da381" src="https://github.com/user-attachments/assets/28b60a3b-741d-4768-a927-ef65f71984d2" />
+![Görüntüleme Ekranı](https://github.com/user-attachments/assets/28b60a3b-741d-4768-a927-ef65f71984d2)
 *<p align="center">Ana Görüntüleme Ekranı</p>*
 
 ## Proje Hakkında
@@ -30,7 +30,7 @@ Uygulama, kullanıcı deneyimini iyileştirmek için iki ayrı pencereden oluşu
 #### Kontrol Paneli
 Kullanıcının görüntüleme parametrelerini (WW/WL, zoom, katman) kolayca yönetebildiği arayüz.
 
-<img width="1919" height="1079" alt="398671071-0f24a50b-6f9b-422a-8b53-01c3c68c0584" src="https://github.com/user-attachments/assets/803c8477-7f41-4699-899b-08473fb3b250" />
+![Kontrol Paneli](https://github.com/user-attachments/assets/803c8477-7f41-4699-899b-08473fb3b250)
 
 ## Kullanılan Teknolojiler ve Mimari
 
